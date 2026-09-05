@@ -1,11 +1,12 @@
-const micBtn=document.getElementById("micBtn");
-const question=document.getElementById("question");
-const answer=document.getElementById("answer");
+const micBtn = document.getElementById("micBtn");
+const question = document.getElementById("question");
+const answer = document.getElementById("answer");
 
 const SpeechRecognition =
- window.SpeechRecognition || window.webkitSpeechRecognition;
+    window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (SpeechRecognition) {
+
     const recognition = new SpeechRecognition();
 
     recognition.lang = "en-US";
@@ -19,6 +20,7 @@ if (SpeechRecognition) {
     });
 
     recognition.onresult = (event) => {
+
         const text = event.results[0][0].transcript;
 
         question.textContent = text;
@@ -46,6 +48,7 @@ if (SpeechRecognition) {
 
         const speech = new SpeechSynthesisUtterance(response);
         speech.lang = "en-US";
+
         window.speechSynthesis.speak(speech);
     };
 
@@ -54,6 +57,7 @@ if (SpeechRecognition) {
     };
 
 } else {
+
     answer.textContent =
         "Sorry, your browser does not support speech recognition.";
 }
